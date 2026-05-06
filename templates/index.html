@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text to SQL Converter - AI Powered</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-database"></i> Speak To Query
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/converter">Converter</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h1 class="display-3 fw-bold mb-4">Transform Natural Language to SQL</h1>
+                    <p class="lead mb-4">Powered by AI, our intelligent converter translates your questions into precise SQL queries instantly.</p>
+                    <a href="/converter" class="btn btn-primary btn-lg px-5 py-3">
+                        <i class="fas fa-rocket me-2"></i>Try It Now
+                    </a>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <img src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=600&h=400&fit=crop" alt="AI Database" class="img-fluid rounded-4 shadow-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="fade-up">How It Works</h2>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card h-100 border-0 shadow-sm text-center p-4">
+                        <div class="card-body">
+                            <div class="icon-box mb-3">
+                                <i class="fas fa-comment-dots fa-3x text-primary"></i>
+                            </div>
+                            <h4>1. Ask Your Question</h4>
+                            <p class="text-muted">Type your question in plain English. For example: "Show all students with marks above 80"</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card h-100 border-0 shadow-sm text-center p-4">
+                        <div class="card-body">
+                            <div class="icon-box mb-3">
+                                <i class="fas fa-brain fa-3x text-success"></i>
+                            </div>
+                            <h4>2. AI Processing</h4>
+                            <p class="text-muted">Our AI (Groq LLaMA 3.3) analyzes your question and understands the database schema</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card h-100 border-0 shadow-sm text-center p-4">
+                        <div class="card-body">
+                            <div class="icon-box mb-3">
+                                <i class="fas fa-code fa-3x text-danger"></i>
+                            </div>
+                            <h4>3. Get SQL Query</h4>
+                            <p class="text-muted">Receive the generated SQL query and see the results instantly from your database</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Flow Section -->
+    <section class="process-flow py-5">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="fade-up">The Complete Process</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="timeline">
+                        <div class="timeline-item" data-aos="fade-right">
+                            <div class="timeline-icon bg-primary">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h5>User Input</h5>
+                                <p>You enter a natural language question through our web interface</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item" data-aos="fade-left">
+                            <div class="timeline-icon bg-success">
+                                <i class="fas fa-paper-plane"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h5>API Request</h5>
+                                <p>Your question is sent to Groq's AI model via secure API</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item" data-aos="fade-right">
+                            <div class="timeline-icon bg-warning">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h5>AI Analysis</h5>
+                                <p>The LLaMA 3.3 model processes your query with database schema context</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item" data-aos="fade-left">
+                            <div class="timeline-icon bg-info">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h5>SQL Generation</h5>
+                                <p>AI generates optimized SQL query based on your database structure</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item" data-aos="fade-right">
+                            <div class="timeline-icon bg-danger">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h5>Query Execution</h5>
+                                <p>The SQL query is executed on your SQLite database</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item" data-aos="fade-left">
+                            <div class="timeline-icon bg-dark">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h5>Results Display</h5>
+                                <p>You receive both the SQL query and the results in a clean format</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Database Schema Section -->
+    <section class="database-schema py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="fade-up">Database Schema</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card border-0 shadow-lg" data-aos="zoom-in">
+                        <div class="card-body p-5">
+                            <div class="text-center mb-4">
+                                <i class="fas fa-table fa-4x text-primary mb-3"></i>
+                                <h4>STUDENT Table</h4>
+                            </div>
+                            <table class="table table-hover">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>Column Name</th>
+                                        <th>Data Type</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>NAME</code></td>
+                                        <td>TEXT</td>
+                                        <td>Student's full name</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>CLASS</code></td>
+                                        <td>TEXT</td>
+                                        <td>Department/Class</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>SECTION</code></td>
+                                        <td>TEXT</td>
+                                        <td>Section identifier</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>MARKS</code></td>
+                                        <td>INTEGER</td>
+                                        <td>Student's marks</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="alert alert-info mt-4">
+                                <i class="fas fa-info-circle me-2"></i>
+                                <strong>Example Queries:</strong> "Show all Computer students", "Students with marks above 85", "List all sections in Physics class"
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features py-5">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="fade-up">Key Features</h2>
+            <div class="row g-4">
+                <div class="col-md-3" data-aos="flip-left" data-aos-delay="100">
+                    <div class="feature-card text-center p-4">
+                        <i class="fas fa-bolt fa-3x text-warning mb-3"></i>
+                        <h5>Lightning Fast</h5>
+                        <p class="text-muted">Get SQL queries in milliseconds</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="flip-left" data-aos-delay="200">
+                    <div class="feature-card text-center p-4">
+                        <i class="fas fa-shield-alt fa-3x text-success mb-3"></i>
+                        <h5>Secure</h5>
+                        <p class="text-muted">Your data stays private and secure</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="flip-left" data-aos-delay="300">
+                    <div class="feature-card text-center p-4">
+                        <i class="fas fa-magic fa-3x text-danger mb-3"></i>
+                        <h5>AI Powered</h5>
+                        <p class="text-muted">Advanced LLaMA 3.3 model</p>
+                    </div>
+                </div>
+                <div class="col-md-3" data-aos="flip-left" data-aos-delay="400">
+                    <div class="feature-card text-center p-4">
+                        <i class="fas fa-mobile-alt fa-3x text-info mb-3"></i>
+                        <h5>Responsive</h5>
+                        <p class="text-muted">Works on all devices</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section py-5 bg-primary text-white">
+        <div class="container text-center" data-aos="zoom-in">
+            <h2 class="mb-4">Ready to Convert Your Questions?</h2>
+            <p class="lead mb-4">Start using our AI-powered Text to SQL converter today!</p>
+            <a href="/converter" class="btn btn-light btn-lg px-5 py-3">
+                <i class="fas fa-arrow-right me-2"></i>Get Started
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2024 Text2SQL Converter. Powered by Groq AI</p>
+            <div class="mt-2">
+                <a href="#" class="text-white me-3"><i class="fab fa-github"></i></a>
+                <a href="#" class="text-white me-3"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS Animation -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+</body>
+</html>
