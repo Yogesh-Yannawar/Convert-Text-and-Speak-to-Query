@@ -82,6 +82,21 @@ text_to_sql_website/
 └── README.md                  # This file
 ```
 
+## 🏠 Home Page
+![Home](static/images/home.png)
+
+## 🔍 Query Example 1
+![Query1](static/images/query1.png)
+
+## 🔍 Query Example 2
+![Query2](static/images/query2.png)
+
+## 🔍 Query Example 3
+![Query3](static/images/query3.png)
+
+## 📱 Responsive Design
+![Responsive](static/images/responsive.png)
+
 ## 🛠️ Technologies Used
 
 ### Backend
